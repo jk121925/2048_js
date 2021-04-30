@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<script>
+    var arr = new Array(4);
+    for(var i=0; i<arr.length; i++){
+      arr[i] = new Array(4);
+    }
+  
+    for(var i=0; i<arr.length; i++){
+      for(var j = 0; j< arr[i].length; j++){
+        arr[i][j] =0;
+      }
+    }
+    var initialCount = 2;
+
+    var rowInitialCount = Math.floor(Math.random()*5);
+    var columneInitialCount = Math.floor(Math.random()*5);
+
+    for(var i = 0; i<initialCount; i++){
+        row = Math.floor(Math.random()*4);
+        columne = Math.floor(Math.random()*4);
+        if(arr[row][columne] === 0){
+            arr[row][columne] = 2;
+        }
+        else
+        {
+            arr[row-1][columne+1] = 2;
+        }
+        
+    }
+    
+    console.log(arr);
+    console.log(1);
+  
+  </script>
+
+
+
+<body>
+    <h1>2048</h1>
+    
+</body>
+</html>
+
+
+
+  
+  
