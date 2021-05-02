@@ -156,48 +156,49 @@ function addOtherNum(addArr, addNum){
   return addArr;
 }
 
+function renderingArr(renderArr){
+  for(var i = 0; i<renderArr.length; i++){
+    for(var j = 0; j<renderArr.length; j++){
+      var a = document.getElementsByClassName("box_"+i);
+      a.item(j).innerText = renderArr[i][j];
+    }
+  }
+}
+
 
 
 // keyboard event and run 2048
 window.addEventListener('keydown', (e) => {
 if(e.keyCode === 37){
     var newArr = left_move(arr);
-    console.log(newArr[1]);
     if(newArr[1] ===1){
       arr = addOtherNum(newArr[0],1);
-    }
-    var a = document.getElementsByClassName("box"); 
-    for(var i=0; i<a.length; i++){
-    console.log(a.item(i));
-    a.item(i).innerText = arr[1][i];
-    }
-
+    } 
+    renderingArr(arr);
   }
   else if(e.keyCode === 38){
     var newArr = upArrow(arr);
-    console.log(newArr[1]);
     if(newArr[1]===1){
       arr = addOtherNum(newArr[0],1);
     }
-
+    renderingArr(arr);
   }
   else if(e.keyCode === 39){
     var newArr = right_move(arr);
-    console.log(newArr[1]);
     if(newArr[1]===1){
       arr = addOtherNum(newArr[0],1);
     }
-
+    renderingArr(arr);
   }
   else if(e.keyCode === 40){
     var newArr = downArrow(arr);
-    console.log(newArr[1]);
     if(newArr[1]===1){
       arr = addOtherNum(newArr[0],1);
     }
-    
+    renderingArr(arr);
   }
   console.log(arr);
 }, false);
+
 
 
