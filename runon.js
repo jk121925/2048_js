@@ -164,7 +164,12 @@ if(e.keyCode === 37){
     var newArr = left_move(arr);
     console.log(newArr[1]);
     if(newArr[1] ===1){
-      arr = addOtherNum(newArr[0],Math.floor((Math.random()*3)+1));
+      arr = addOtherNum(newArr[0],1);
+    }
+    var a = document.getElementsByClassName("box"); 
+    for(var i=0; i<a.length; i++){
+    console.log(a.item(i));
+    a.item(i).innerText = arr[1][i];
     }
 
   }
@@ -172,7 +177,7 @@ if(e.keyCode === 37){
     var newArr = upArrow(arr);
     console.log(newArr[1]);
     if(newArr[1]===1){
-      arr = addOtherNum(newArr[0],Math.floor((Math.random()*3)+1));
+      arr = addOtherNum(newArr[0],1);
     }
 
   }
@@ -180,7 +185,7 @@ if(e.keyCode === 37){
     var newArr = right_move(arr);
     console.log(newArr[1]);
     if(newArr[1]===1){
-      arr = addOtherNum(newArr[0],Math.floor((Math.random()*3)+1));
+      arr = addOtherNum(newArr[0],1);
     }
 
   }
@@ -188,9 +193,11 @@ if(e.keyCode === 37){
     var newArr = downArrow(arr);
     console.log(newArr[1]);
     if(newArr[1]===1){
-      arr = addOtherNum(newArr[0],Math.floor((Math.random()*3)+1));
+      arr = addOtherNum(newArr[0],1);
     }
     
   }
   console.log(arr);
 }, false);
+
+
