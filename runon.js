@@ -139,9 +139,11 @@ function setDoubleArray(length){
 }
 
 //Add other num
+// check cnt cause they have few box that are add
 function addOtherNum(addArr, addNum){
 
   for(var i = 0; i<addNum; i++){
+    var cnt =0;
     while(1){
       row = Math.floor((Math.random()*3));
       columne = Math.floor((Math.random()*3));
@@ -149,11 +151,68 @@ function addOtherNum(addArr, addNum){
         addArr[row][columne] =2;
         break;
       }
-      else
-      continue;
+
+      if(cnt ===30){
+      alert("after 30");
+      }
     }
   }
-  return addArr;
+return addArr;
+}
+
+//rendering html using javascript
+function renderingArr(renderArr){
+  for(var i = 0; i<renderArr.length; i++){
+    for(var j = 0; j<renderArr.length; j++){
+      var a = document.getElementsByClassName("box_"+i);
+      a.item(j).innerText = renderArr[i][j];
+    }
+  }
+}
+
+function setColorArr(ColorArr){
+  for(var i =0; i<ColorArr.length; i++){
+    for(var j=0; j<ColorArr.length; j++){
+      var test = document.getElementsByClassName("box_"+i).item(j);
+      if(test.innerText === '0'){
+        test.style.backgroundColor = "#FFB6C1";
+      }
+      else if(test.innerText === '2'){
+        test.style.backgroundColor = "#FF69B4";
+      }
+      else if(test.innerText === '4'){
+        test.style.backgroundColor = "#DB7093";
+      }
+      else if(test.innerText === '8'){
+        test.style.backgroundColor = "#FF00FF";
+      }
+      else if(test.innerText === '16'){
+        test.style.backgroundColor = "#BA55D3";
+      }
+      else if(test.innerText === '32'){
+        test.style.backgroundColor = "#9400D3";
+      }
+      else if(test.innerText === '64'){
+        test.style.backgroundColor = "#8A2BE2";
+      }
+      else if(test.innerText === '128'){
+        test.style.backgroundColor = "#E6E6FA";
+      }
+      else if(test.innerText === '256'){
+        test.style.backgroundColor = "#483D8B";
+      }
+      else if(test.innerText === '512'){
+        test.style.backgroundColor = "#6A5ACD";
+      }
+
+      else if(test.innerText === '1024'){
+        test.style.backgroundColor = "#778899";
+      }
+      else if(test.innerText === '2048'){
+        test.style.backgroundColor = "#2F4F4F";
+      }
+    }
+  }
 }
 
 function renderingArr(renderArr){
@@ -173,8 +232,14 @@ if(e.keyCode === 37){
     var newArr = left_move(arr);
     if(newArr[1] ===1){
       arr = addOtherNum(newArr[0],1);
+<<<<<<< HEAD
     } 
     renderingArr(arr);
+=======
+    }
+    renderingArr(arr);
+    setColorArr(arr);
+>>>>>>> 281f6bbce5e2f0485e040c31bc7f83227fe518c7
   }
   else if(e.keyCode === 38){
     var newArr = upArrow(arr);
@@ -182,6 +247,11 @@ if(e.keyCode === 37){
       arr = addOtherNum(newArr[0],1);
     }
     renderingArr(arr);
+<<<<<<< HEAD
+=======
+    setColorArr(arr);
+
+>>>>>>> 281f6bbce5e2f0485e040c31bc7f83227fe518c7
   }
   else if(e.keyCode === 39){
     var newArr = right_move(arr);
@@ -189,6 +259,10 @@ if(e.keyCode === 37){
       arr = addOtherNum(newArr[0],1);
     }
     renderingArr(arr);
+<<<<<<< HEAD
+=======
+    setColorArr(arr);
+>>>>>>> 281f6bbce5e2f0485e040c31bc7f83227fe518c7
   }
   else if(e.keyCode === 40){
     var newArr = downArrow(arr);
@@ -196,8 +270,11 @@ if(e.keyCode === 37){
       arr = addOtherNum(newArr[0],1);
     }
     renderingArr(arr);
+<<<<<<< HEAD
+=======
+    setColorArr(arr);
+>>>>>>> 281f6bbce5e2f0485e040c31bc7f83227fe518c7
   }
-  console.log(arr);
 }, false);
 
 
