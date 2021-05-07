@@ -43,7 +43,8 @@ function setDoubleArray(length){
 //keyboardenter after algorithm
 
 
-function swapRowColumn(swapArr){
+function swapRowColumn(newSwapArr){
+  var swapArr = newSwapArr;
   for(i =0; i<swapArr.length; i++){
     for(j =i; j<swapArr.length; j++){
       [swapArr[i][j], swapArr[j][i]] = [swapArr[j][i],swapArr[i][j]];
@@ -52,8 +53,8 @@ function swapRowColumn(swapArr){
   return swapArr;
 }
 
-
-function leftBeforeMove(uppArr){
+function leftBeforeMove(previouseArr){
+  var uppArr = previouseArr;
   var move_test =0;
     for(var i =0; i<uppArr.length; i++){
       var cnt =0;
@@ -86,11 +87,11 @@ function leftBeforeMove(uppArr){
             }
         }
     }
-    console.log(move_test);
     return [uppArr,move_test];
 }
 
-function rightBeforeMove(uppArr){
+function rightBeforeMove(previouseArr){
+  var uppArr = previouseArr;
   var move_test =0;
     for(var i =0; i<uppArr.length; i++){
       var cnt = 3;
@@ -141,8 +142,9 @@ function downBeforeMove(doubleList){
   return [newArr,move_test];
 }
 
-function leftMove(movingArr, moveTest){
+function leftMovefunc(beforeMoveArr, moveTest){
   //check move test
+  var movingArr = beforeMoveArr; 
   var move_test = 0;
   if(moveTest ===1){
     move_test =1;
@@ -175,9 +177,9 @@ function leftMove(movingArr, moveTest){
   return [movingArr,move_test];
 }
 
-
-function rightMove(movingArr,moveTest){
+function rightMovefunc(beforeMoveArr,moveTest){
   //check move test
+  var movingArr = beforeMoveArr;
   var move_test = 0;
   if(moveTest ===1){
     move_test =1;
@@ -210,22 +212,9 @@ function rightMove(movingArr,moveTest){
   return [movingArr,move_test];
 }
 
-
-function upMove(movingArr, moveTest){
+function upMovefunc(movingArr, moveTest){
   swapRowColumn(movingArr);
-  var temp_arr = leftMove(movingArr);
-  var move_test =0;
-  if(moveTest ===1 || temp_arr[1] ===1){
-    move_test = 1;
-  }
-  console.log(move_test);
-  var newArr = swapRowColumn(temp_arr[0]);
-  return [newArr,move_test];
-}
-
-function downMove(movingArr, moveTest){
-  swapRowColumn(movingArr);
-  var temp_arr = rightMove(movingArr);
+  var temp_arr = leftMovefunc(movingArr);
   var move_test =0;
   if(moveTest ===1 || temp_arr[1] ===1){
     move_test = 1;
@@ -234,25 +223,52 @@ function downMove(movingArr, moveTest){
   return [newArr,move_test];
 }
 
+function downMovefunc(movingArr, moveTest){
+  swapRowColumn(movingArr);
+  var temp_arr = rightMovefunc(movingArr);
+  var move_test =0;
+  if(moveTest ===1 || temp_arr[1] ===1){
+    move_test = 1;
+  }
+  var newArr = swapRowColumn(temp_arr[0]);
+  return [newArr,move_test];
+}
 
+function moveLeft(moveLeftArr){
+  var newArr = leftBeforeMove(moveLeftArr);
+  var tempArr = leftMovefunc(newArr[0],newArr[1]);
+  return[tempArr[0],tempArr[1]];
+}
+function moveRight(moveRightArr){
+  var newArr = rightBeforeMove(moveRightArr);
+  var tempArr = rightMovefunc(newArr[0],newArr[1]);
+  return[tempArr[0],tempArr[1]];
+}
+function moveUp(moveUpArr){
+  var newArr = upBeforeMove(moveUpArr);
+  var tempArr = upMovefunc(newArr[0],newArr[1]);
+  return[tempArr[0],tempArr[1]];
+}
+function moveDown(moveDownArr){
+  var newArr = downBeforeMove(moveDownArr);
+  var tempArr = downMovefunc(newArr[0],newArr[1]);
+  return[tempArr[0],tempArr[1]];
+}
 //Add other num
 // check cnt cause they have few box that are add
 function addOtherNum(addArr, addNum){
-
-  for(var i = 0; i<addNum; i++){
-    var cnt =0;
-    while(1){
-      row = Math.floor((Math.random()*3));
-      columne = Math.floor((Math.random()*3));
-      if(addArr[row][columne] ===0){
-        addArr[row][columne] =2;
-        break;
-      }
-
-      if(cnt ===30){
-      alert("after 30");
+  var emptyArr = [];
+  for(var j =0; j< addArr.length; j++){
+    for(var k =0; k<addArr.length; k++){
+      if(addArr[j][k] ===0){
+        emptyArr.push([j,k]);
       }
     }
+  }
+  for(var i =0; i<addNum; i++){
+    var setArrNum = Math.floor((Math.random()*(emptyArr.length)));
+    var setAddNum = emptyArr[setArrNum];
+    addArr[setAddNum[0]][setAddNum[1]] =2;
   }
 return addArr;
 }
@@ -311,64 +327,113 @@ function setColorArr(ColorArr){
   }
 }
 
+function checkEndGame(checkArr){
+  var endTest=1; 
+  for(var i =0; i<checkArr.length; i++){
+    if(endTest ===0){
+      break;
+    }
+    for(var j =0; j<checkArr.length; j++){
+      if(checkArr[i][j] ===0){
+        endTest =0;
+        break;
+      }
+      else if(j<3 && checkArr[i][j] ===checkArr[i][j+1]){
+        endTest =0;
+        break;
+      }
+    }
+
+  }
+  return endTest;
+}
+
+
 
 
 
 // keyboard event and run 2048
 window.addEventListener('keydown', (e) => {
+  var checkEndNum = 0;
+  var swapCheckEndNum = 0;
 if(e.keyCode === 37){
-    var newArr = leftBeforeMove(arr);
-    var tempArr = leftMove(newArr[0],newArr[1]);
-    if(tempArr[1] ===1){
-      arr =addOtherNum(tempArr[0],1)
+    var runNewArr = leftBeforeMove(arr);
+    var runTempArr = leftMovefunc(runNewArr[0],runNewArr[1]);
+    if(runTempArr[1] ===1){
+      arr =addOtherNum(runTempArr[0],1)
     }
     else {
-      arr = tempArr[0];
+      arr = runTempArr[0];
     }
-    console.log(tempArr);
+
     renderingArr(arr);
     setColorArr(arr);
+    
+    checkEndNum = checkEndGame(arr);
+    swapCheckEndNum = checkEndGame(swapRowColumn(arr));
+    swapRowColumn(arr);
   }
   else if(e.keyCode === 38){
-    var newArr = upBeforeMove(arr);
-    var tempArr = upMove(newArr[0],newArr[1]);
-    if(tempArr[1] ===1){
-      arr =addOtherNum(tempArr[0],1)
+    var runNewArr = upBeforeMove(arr);
+    var runTempArr = upMovefunc(runNewArr[0],runNewArr[1]);
+    if(runTempArr[1] ===1){
+      arr =addOtherNum(runTempArr[0],1)
     }
     else {
-      arr = tempArr[0];
+      arr = runTempArr[0];
     }
-    console.log(tempArr);
+
     renderingArr(arr);
     setColorArr(arr);
+    
+    checkEndNum = checkEndGame(arr);
+    swapCheckEndNum = checkEndGame(swapRowColumn(arr));
+    swapRowColumn(arr);
+
   }
   else if(e.keyCode === 39){
-    var newArr = rightBeforeMove(arr);
-    var tempArr = rightMove(newArr[0],newArr[1]);
-    if(tempArr[1] ===1){
-      arr =addOtherNum(tempArr[0],1)
+    var runNewArr = rightBeforeMove(arr);
+    var runTempArr = rightMovefunc(runNewArr[0],runNewArr[1]);
+    if(runTempArr[1] ===1){
+      arr =addOtherNum(runTempArr[0],1)
     }
     else {
-      arr = tempArr[0];
+      arr = runTempArr[0];
     }
-    console.log(tempArr);
+
     renderingArr(arr);
     setColorArr(arr);
+    
+    checkEndNum = checkEndGame(arr);
+    swapCheckEndNum = checkEndGame(swapRowColumn(arr));
+    swapRowColumn(arr);
   }
 
   else if(e.keyCode === 40){
-    var newArr = downBeforeMove(arr);
-    var tempArr = downMove(newArr[0],newArr[1]);
-    if(tempArr[1] ===1){
-      arr =addOtherNum(tempArr[0],1)
+    var runNewArr = downBeforeMove(arr);
+    var runTempArr = downMovefunc(runNewArr[0],runNewArr[1]);
+    if(runTempArr[1] ===1){
+      arr =addOtherNum(runTempArr[0],1)
     }
     else {
-      arr = tempArr[0];
+      arr = runTempArr[0];
     }
-    console.log(tempArr);
+
     renderingArr(arr);
-    setColorArr(arr);  }
+    setColorArr(arr);
+    
+    checkEndNum = checkEndGame(arr);
+    swapCheckEndNum = checkEndGame(swapRowColumn(arr));
+    swapRowColumn(arr);
+  }
+  if(checkEndNum ===1 && swapCheckEndNum ===1){
+    alert("End Game");
+  }
+
 }, false);
+
+
+
 
 
 
