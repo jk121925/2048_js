@@ -288,40 +288,40 @@ function setColorArr(ColorArr){
     for(var j=0; j<ColorArr.length; j++){
       var test = document.getElementsByClassName("box_"+i).item(j);
       if(test.innerText === '0'){
-        test.style.backgroundColor = "#FFB6C1";
+        test.style.backgroundColor = "#EBF5F7";
       }
       else if(test.innerText === '2'){
-        test.style.backgroundColor = "#FF69B4";
+        test.style.backgroundColor = "#AAC8D7";
       }
       else if(test.innerText === '4'){
-        test.style.backgroundColor = "#DB7093";
+        test.style.backgroundColor = "#96B1C7";
       }
       else if(test.innerText === '8'){
-        test.style.backgroundColor = "#FF00FF";
+        test.style.backgroundColor = "#788BAD";
       }
       else if(test.innerText === '16'){
-        test.style.backgroundColor = "#BA55D3";
+        test.style.backgroundColor = "#687AA0";
       }
       else if(test.innerText === '32'){
-        test.style.backgroundColor = "#9400D3";
+        test.style.backgroundColor = "#596A94";
       }
       else if(test.innerText === '64'){
-        test.style.backgroundColor = "#8A2BE2";
+        test.style.backgroundColor = "#4B5989";
       }
       else if(test.innerText === '128'){
-        test.style.backgroundColor = "#E6E6FA";
+        test.style.backgroundColor = "#404C7E";
       }
       else if(test.innerText === '256'){
-        test.style.backgroundColor = "#483D8B";
+        test.style.backgroundColor = "#2F3E75";
       }
       else if(test.innerText === '512'){
-        test.style.backgroundColor = "#6A5ACD";
+        test.style.backgroundColor = "#1E316C";
       }
       else if(test.innerText === '1024'){
-        test.style.backgroundColor = "#778899";
+        test.style.backgroundColor = "#1C2B5B";
       }
       else if(test.innerText === '2048'){
-        test.style.backgroundColor = "#2F4F4F";
+        test.style.backgroundColor = "#0D1F42";
       }
     }
   }
@@ -347,6 +347,7 @@ function checkEndGame(checkArr){
   }
   return endTest;
 }
+
 
 
 
@@ -428,6 +429,8 @@ if(e.keyCode === 37){
   }
   if(checkEndNum ===1 && swapCheckEndNum ===1){
     alert("End Game");
+    checkEndNum =0;
+    swapCheckEndNum=0;
   }
 
 }, false);

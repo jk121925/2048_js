@@ -10,71 +10,135 @@
   </head>
 
 <style>
+    .body1{
+    min-height: 100vh;
+    background: #000;
+    }
+    .body0{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15%;
+    }
+    .body2{
+    margin: auto;
+    }
+    .content{
+        position: relative;
+    }
+    .content h2{
+        position: absolute;
+        color: #fff;
+        transform: translate(-50%,-50%);
+        font-size:  8em;
+    }
+    .content h2:nth-child(1){
+        color: transparent;
+        -webkit-text-stroke: 2px #AAC8D7;
+    }
+
+    .content h2:nth-child(2){
+    color: #AAC8D7;
+    animation: animate 4s ease-in-out infinite;
+    }   
+    @keyframes animate{
+        0%,100%
+        {
+            clip-path: polygon(0% 56%, 16% 53%, 31% 63%, 45% 70%, 61% 71%, 75% 62%, 86% 55%, 100% 56%, 100% 100%, 0% 100%);
+        }
+        50%
+        {
+            clip-path: polygon(0 66%, 17% 70%, 32% 71%, 45% 70%, 59% 63%, 71% 55%, 86% 51%, 100% 54%, 100% 100%, 0% 100%);
+
+        }
+    }
+    /*rendering box */
+    .boxContainer{
+        text-align: center;
+        width: 50%;
+        margin: auto;
+        margin-top: 0%;
+        margin-bottom: 0%;
+    }
     .box_0{
         display: inline-block;
         width: 100px;
         height: 100px;
         line-height: 100px;
-        margin: 10px 10px 10px 10px;
-        border: 1px solid black;
+        margin: 5px 5px 5px 5px;
         text-align: center;
+        font-size: 4em;
+        color: rgb(255, 255, 255);
     }
     .box_1{
         display: inline-block;
         width: 100px;
         height: 100px;
         line-height: 100px;
-        margin: 10px 10px 10px 10px;
-        border: 1px solid black;
+        margin: 5px 5px 5px 5px;
         text-align: center;
+        font-size: 4em;
+        color: rgb(255, 255, 255);
     }
     .box_2{
         display: inline-block;
         width: 100px;
         height: 100px;
         line-height: 100px;
-        margin: 10px 10px 10px 10px;
-        border: 1px solid black;
+        margin: 5px 5px 5px 5px;
         text-align: center;
+        font-size: 4em;
+        color: rgb(255, 255, 255);
     }
     .box_3{
         display: inline-block;
         width: 100px;
         height: 100px;
         line-height: 100px;
-        margin: 10px 10px 10px 10px;
-        border: 1px solid black;
+        margin: 5px 5px 5px 5px;
         text-align: center;
+        font-size: 4em;
+        color: rgb(255, 255, 255);
+        
     }
     
   </style>
+
   <body>
-    <h1>2048</h1>
-    hello? 
-    <div>
-        <div class="box_0">arr[0]</div>
-        <div class="box_0">arr[1]</div>
-        <div class="box_0">arr[2]</div>
-        <div class="box_0">arr[3]</div>
-    </div>
-    <div>
-        <div class="box_1">arr[0]</div>
-        <div class="box_1">arr[1]</div>
-        <div class="box_1">arr[2]</div>
-        <div class="box_1">arr[3]</div>
-    </div>
-    <div>
-        <div class="box_2">arr[0]</div>
-        <div class="box_2">arr[1]</div>
-        <div class="box_2">arr[2]</div>
-        <div class="box_2">arr[3]</div>
-    </div>
-    <div>
-        <div class="box_3">arr[0]</div>
-        <div class="box_3">arr[1]</div>
-        <div class="box_3">arr[2]</div>
-        <div class="box_3">arr[3]</div>
-    </div>
+<div class ="body1">
+    <div class ="body0">
+        <div class ="content">
+            <h2>2048</h2>
+            <h2>2048</h2>
+        </div>
+    </div>    
+        <div class ="body2">
+                <div class="boxContainer">
+                    <div class="box_0">arr[0]</div>
+                    <div class="box_0">arr[1]</div>
+                    <div class="box_0">arr[2]</div>
+                    <div class="box_0">arr[3]</div>
+                </div>
+                <div class="boxContainer">
+                    <div class="box_1">arr[0]</div>
+                    <div class="box_1">arr[1]</div>
+                    <div class="box_1">arr[2]</div>
+                    <div class="box_1">arr[3]</div>
+                </div>
+                <div class="boxContainer">
+                    <div class="box_2">arr[0]</div>
+                    <div class="box_2">arr[1]</div>
+                    <div class="box_2">arr[2]</div>
+                    <div class="box_2">arr[3]</div>
+                </div>
+                <div class="boxContainer">
+                    <div class="box_3">arr[0]</div>
+                    <div class="box_3">arr[1]</div>
+                    <div class="box_3">arr[2]</div>
+                    <div class="box_3">arr[3]</div>
+                </div>
+            </div>
+</div>
 
 
   </body>
