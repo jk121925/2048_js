@@ -215,47 +215,67 @@ function setColorArr(ColorArr){
   }
 }
 
+function renderingArr(renderArr){
+  for(var i = 0; i<renderArr.length; i++){
+    for(var j = 0; j<renderArr.length; j++){
+      var a = document.getElementsByClassName("box_"+i);
+      a.item(j).innerText = renderArr[i][j];
+    }
+  }
+}
+
 
 
 // keyboard event and run 2048
 window.addEventListener('keydown', (e) => {
 if(e.keyCode === 37){
     var newArr = left_move(arr);
-    console.log(newArr[1]);
     if(newArr[1] ===1){
       arr = addOtherNum(newArr[0],1);
+<<<<<<< HEAD
+    } 
+    renderingArr(arr);
+=======
     }
     renderingArr(arr);
     setColorArr(arr);
+>>>>>>> 281f6bbce5e2f0485e040c31bc7f83227fe518c7
   }
   else if(e.keyCode === 38){
     var newArr = upArrow(arr);
-    console.log(newArr[1]);
     if(newArr[1]===1){
       arr = addOtherNum(newArr[0],1);
     }
     renderingArr(arr);
+<<<<<<< HEAD
+=======
     setColorArr(arr);
 
+>>>>>>> 281f6bbce5e2f0485e040c31bc7f83227fe518c7
   }
   else if(e.keyCode === 39){
     var newArr = right_move(arr);
-    console.log(newArr[1]);
     if(newArr[1]===1){
       arr = addOtherNum(newArr[0],1);
     }
     renderingArr(arr);
+<<<<<<< HEAD
+=======
     setColorArr(arr);
+>>>>>>> 281f6bbce5e2f0485e040c31bc7f83227fe518c7
   }
   else if(e.keyCode === 40){
     var newArr = downArrow(arr);
-    console.log(newArr[1]);
     if(newArr[1]===1){
       arr = addOtherNum(newArr[0],1);
     }
     renderingArr(arr);
+<<<<<<< HEAD
+=======
     setColorArr(arr);
+>>>>>>> 281f6bbce5e2f0485e040c31bc7f83227fe518c7
   }
 }, false);
+
 
 
